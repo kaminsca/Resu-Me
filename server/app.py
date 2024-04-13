@@ -20,14 +20,15 @@ def hello_world():
 
 @app.route("/")
 def home():
-    gemini_query()
     return render_template('index.html')
 
 @app.route("/gemini", methods = ['GET'])
-def gemini_query(theme=None, resume=None):
+def gemini_query(theme=None, resume=None, username=None):
     genai.configure(api_key=os.environ.get("GOOGLE_API_KEY"))
     if theme == None:
         theme = 'theme1'
+    if username == None:
+        username = 'therkelson'
     model = genai.GenerativeModel(model_name='models/gemini-1.5-pro-latest')
     prompt_list = []
     
@@ -51,20 +52,29 @@ def gemini_query(theme=None, resume=None):
     # # print(response.text)
     # html = re.findall(html_pattern, response.text)
     # css = re.findall(css_pattern, response.text)
-    print('HTML -----------------------------------\n', parts[1].removeprefix('html\n'))
+    html = parts[1].removeprefix('html\n')
+    css = None
+    print('HTML -----------------------------------\n', html)
     if len(parts) > 2:
-        print('CSS -----------------------------------\n', parts[1].removeprefix('html\n'))
+        css = parts[3].removeprefix('css\n')
+        print('CSS -----------------------------------\n', css)
+    
 
     client = get_mongo_client()
     write_entry(
         client,
         "therkels",
-        parts[1].removeprefix('html\n'),
-        "lol"
+        html,
+        css
         )
     # print(response.text)
     #TODO: add response to database
     return response
+
+@app.route("/user", methods = ['GET'])
+def get_user(username):
+    gemini_query()
+    render_template('index.html')
 
 if __name__ == '__main__':
     load_dotenv()
