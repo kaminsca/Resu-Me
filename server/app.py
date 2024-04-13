@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify, render_template_string
+from flask import Flask, render_template, jsonify, render_template_string, request
 from flask_cors import CORS, cross_origin
 import google.generativeai as genai
 from dotenv import load_dotenv
@@ -22,16 +22,35 @@ def hello_world():
 def home():
     return render_template('index.html')
 
-@app.route("/gemini", methods = ['GET'])
-def gemini_query(theme=None, resume=None, username=None):
+@app.route("/gemini",  methods=['POST'])
+def gemini_query():
     genai.configure(api_key=os.environ.get("GOOGLE_API_KEY"))
+    # example link
+    # async function sendFormData(resumePath, theme, username) {
+    #  formData.append('resume', document.querySelector(resumePath).files[0]);
+    # formData.append('theme', theme);
+    # formData.append('username', username);
+
+    # try {
+    #     const response = await fetch('/gemini', {
+    #         method: 'POST',
+    #         body: formData
+    #     });
+    # sendFormData('#resumeInput', 'dark', 'johndoe');
+    resume = request.files['resume']
+    theme = request.args.get('theme')
+    username = request.args.get('username')
     if theme == None:
         theme = 'theme1'
     if username == None:
         username = 'therkelson'
+    if resume == None:
+        resume = ''
     model = genai.GenerativeModel(model_name='models/gemini-1.5-pro-latest')
     prompt_list = []
     
+    # Add resume to prompt
+    prompt_list.append(resume)
     # Get image
     directory = f'themes/{theme}'
     for filename in os.listdir(directory):
@@ -50,10 +69,10 @@ def gemini_query(theme=None, resume=None, username=None):
 
     html = parts[1].removeprefix('html\n')
     css = None
-    print('HTML -----------------------------------\n', html)
+    # print('HTML -----------------------------------\n', html)
     if len(parts) > 2:
         css = parts[3].removeprefix('css\n')
-        print('CSS -----------------------------------\n', css)
+        # print('CSS -----------------------------------\n', css)
     
 
     client = get_mongo_client()
@@ -65,9 +84,8 @@ def gemini_query(theme=None, resume=None, username=None):
         )
     return 200
 
-@app.route("/user", methods = ['GET'])
-def get_user():
-    username=None
+@app.route("/user/<username>", methods = ['GET'])
+def get_user(username):
     if username == None:
         username = "therkels"
     client = get_mongo_client()
