@@ -5,11 +5,13 @@ from dotenv import load_dotenv
 from mongoclient import get_mongo_client, write_entry, read_entry
 import PIL.Image
 import os
-import re
+import io
+import fitz
+import io
 
 
 app = Flask(__name__)
-CORS(app) # This will enable CORS for all routes
+CORS(app, resources={r"/*": {"origins": "*"}})
 @app.route("/test", methods = ['GET'])
 def hello_world():
     payload_response = {
@@ -23,34 +25,35 @@ def home():
     return render_template('index.html')
 
 @app.route("/gemini",  methods=['POST'])
+@cross_origin(origin='*')
 def gemini_query():
     genai.configure(api_key=os.environ.get("GOOGLE_API_KEY"))
-    # example link
-    # async function sendFormData(resumePath, theme, username) {
-    #  formData.append('resume', document.querySelector(resumePath).files[0]);
-    # formData.append('theme', theme);
-    # formData.append('username', username);
-
-    # try {
-    #     const response = await fetch('/gemini', {
-    #         method: 'POST',
-    #         body: formData
-    #     });
-    # sendFormData('#resumeInput', 'dark', 'johndoe');
-    resume = request.files['resume']
+    # Get the uploaded PDF file
+    resume_file = request.files.get('resume', None)
     theme = request.args.get('theme')
     username = request.args.get('username')
-    if theme == None:
-        theme = 'theme1'
-    if username == None:
-        username = 'therkelson'
-    if resume == None:
-        resume = ''
+    print('theme: ', theme)
+    print('username: ', username)
     model = genai.GenerativeModel(model_name='models/gemini-1.5-pro-latest')
     prompt_list = []
     
     # Add resume to prompt
-    prompt_list.append(resume)
+    # Convert the FileStorage stream to bytes
+    resume_bytes = resume_file.read()
+    # Open the PDF file
+    pdf = fitz.open("pdf", resume_bytes)
+    # Iterate over each page and extract image
+    for page_num in range(len(pdf)):
+        page = pdf.load_page(page_num)
+        pix = page.get_pixmap()
+        img_data = pix.tobytes("ppm")
+
+        # Open the image as a PIL Image
+        image = PIL.Image.open(io.BytesIO(img_data))
+        prompt_list.append(image)
+    pdf.close()
+
+    # prompt_list.append(resume)
     # Get image
     directory = f'themes/{theme}'
     for filename in os.listdir(directory):
@@ -82,6 +85,7 @@ def gemini_query():
         html,
         css
         )
+    print(html)
     return 200
 
 @app.route("/user/<username>", methods = ['GET'])
@@ -95,4 +99,4 @@ def get_user(username):
 
 if __name__ == '__main__':
     load_dotenv()
-    app.run()
+    app.run()    

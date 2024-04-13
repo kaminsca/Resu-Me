@@ -26,14 +26,15 @@ function NewUserForm(props) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData();
-        formData.append('url', url);
-        formData.append('file', file);
-        formData.append('selectOption', selectOption);
+        formData.append('username', url);
+        formData.append('resume', file);
+        formData.append('theme', selectOption);
 
         try {
             const response = await fetch(`${LOCAL_URL}/gemini`, {
                 method: 'POST',
                 body: formData,
+                mode: 'no-cors'
             });
 
             if (!response.ok) {
