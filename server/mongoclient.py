@@ -30,7 +30,20 @@ def write_entry(client, username, html, css):
 
     # Optional: Print the ID of the newly inserted document
     print("Inserted document with ID:", result.inserted_id)
-    
+
+
+def read_entry(client, username):
+    # Specify the database name (will be created if it doesn't exist)
+    db_name = 'ResuMe'
+    db = client[db_name]
+
+    # Specify the collection name (will be created on first insert)
+    collection_name = 'user_websites'
+    collection = db[collection_name]
+
+    result = collection.find_one({"username": username})
+    return result
+
 def verify_connection(client):
     try:
         print("Attempting to ping...")
