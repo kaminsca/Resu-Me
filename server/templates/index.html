@@ -4,32 +4,121 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clark Kaminsky | Portfolio</title>
-    <link rel="stylesheet" href="{{ url_for('static',filename='styles/style.css') }}"> </head>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
 <body>
     <header>
-        <div class="logo">
-            <a href="#">CK</a> </div>
-        <nav>
-            <ul>
-                <li><a href="#">Projects</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="Kaminsky_Resume.pdf">Résumé</a></li>
-            </ul>
-        </nav>
+        <div class="container">
+            <h1>R.</h1>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
-    <main>
-        <section class="hero">
-            <h1>A Little Behind The Scenes...</h1>
-            <p>Tids and bits from my design process, unused concepts and experiments - all uncut and raw. Watch this space as I upload more!</p>
-        </section>
-        <section class="projects">
-            <h2>PROJECTS</h2>
-            <div class="project">
-                <h3>Customer Journey Mapping</h3>
-                <p>A customer journey map detailing interactions across various touchpoints throughout the experience of an app, crafted in collaboration with a cross-functional team of product managers, engineers, and other stakeholders.</p>
-                <a href="#" class="button">View Related Project</a>
+
+    <section id="about" class="section">
+        <div class="container">
+            <div class="content">
+                <div class="image">
+                    <img src="profile.jpg" alt="Clark Kaminsky">
+                </div>
+                <div class="text">
+                    <h2>Clark Kaminsky</h2>
+                    <p>Creating Lasting Value Through Purposeful Design</p>
+                    <p>Throughout my career, I've worked on a diverse range of projects, from crafting compelling brand identities and marketing campaigns to designing intuitive user interfaces and digital products. Whether it's developing websites, apps, or other digital platforms, my passion lies in creating solutions that not only look great but also effectively address client goals and values.</p>
+                </div>
             </div>
-            </section>
-    </main>
+        </div>
+    </section>
+
+    <section id="experience" class="section">
+        <div class="container">
+            <h2>Experience</h2>
+            <div class="experience-item">
+                <h3>Software Engineering Intern</h3>
+                <h4>Onward (Shipping Protection Startup) - Nashville, TN</h4>
+                <p>May 2023 – August 2023</p>
+                <ul>
+                    <li>Automated claims processing with Ruby on Rails, increasing efficiency by 80%.</li>
+                    <li>Implemented a Slack notification system, reducing claims team workload by 50%.</li>
+                    <li>Researched AI and NLP tools for automated claim responses.</li>
+                    <li>Enhanced merchant page with financial data and mobile responsiveness using TailwindCSS.</li>
+                </ul>
+            </div>
+            <div class="experience-item">
+                <h3>Cloud Data Management Intern</h3>
+                <h4>Berkeley Lights, Inc. - Emeryville, CA</h4>
+                <p>July 2022 – August 2022</p>
+                <ul>
+                    <li>Developed a data ingestion pipeline using AWS S3, Glue, and Athena for cloud-based cell analysis data.</li>
+                    <li>Implemented C# scripts for efficient data upload to S3 using Transfer Utility.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <div class="container">
+            <h2>Projects</h2>
+            <div class="project-item">
+                <h3>News Article Demographic NLP Model</h3>
+                <p>February 2023 – March 2023</p>
+                <p>Developed a multi-label classification model using BERT to predict the target demographics of news articles.</p>
+            </div>
+            <div class="project-item">
+                <h3>Delegation Based Ensemble Method for LLMs</h3>
+                <p>November 2023 – December 2023</p>
+                <p>Created a Python-based delegator to select the optimal LLM for a given prompt based on question style and domain.</p>
+            </div>
+            </div>
+    </section>
+
+    <section id="skills" class="section">
+        <div class="container">
+            <h2>Skills</h2>
+            <div class="skills-list">
+                <ul>
+                    <li>Python</li>
+                    <li>C++</li>
+                    <li>C#</li>
+                    <li>JavaScript</li>
+                    <li>HTML</li>
+                    <li>Ruby</li>
+                    <li>SQL</li>
+                </ul>
+                <ul>
+                    <li>Web Development</li>
+                    <li>AWS (S3, Athena, EC2)</li>
+                    <li>NLP</li>
+                    <li>Spark</li>
+                    <li>CUDA</li>
+                    <li>Data Visualization</li>
+                    <li>JSON</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="container">
+            <h2>Contact</h2>
+            <p>Email: clarkkam@umich.edu</p>
+            <p>Phone: 615-415-5199</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2023 Clark Kaminsky</p>
+    </footer>
 </body>
 </html>
