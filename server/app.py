@@ -2,6 +2,7 @@ from flask import Flask, render_template, jsonify
 from flask_cors import CORS, cross_origin
 import google.generativeai as genai
 from dotenv import load_dotenv
+from mongoclient import get_mongo_client, write_entry
 import PIL.Image
 import os
 import re
@@ -52,8 +53,15 @@ def gemini_query(theme=None, resume=None):
     # css = re.findall(css_pattern, response.text)
     print('HTML -----------------------------------\n', parts[1].removeprefix('html\n'))
     if len(parts) > 2:
-        print('CSS -----------------------------------\n', parts[3].removeprefix('css\n'))
+        print('CSS -----------------------------------\n', parts[1].removeprefix('html\n'))
 
+    client = get_mongo_client()
+    write_entry(
+        client,
+        "therkels",
+        parts[1].removeprefix('html\n'),
+        "lol"
+        )
     # print(response.text)
     #TODO: add response to database
     return response

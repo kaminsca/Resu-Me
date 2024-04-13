@@ -12,27 +12,25 @@ def get_mongo_client():
         print("Error connecting to MongoDB:", e)
         raise
 
-def write_entry(client):
+def write_entry(client, username, html, css):
     # Specify the database name (will be created if it doesn't exist)
     db_name = 'ResuMe'
     db = client[db_name]
 
     # Specify the collection name (will be created on first insert)
-    collection_name = 'example_collection'
+    collection_name = 'user_websites'
     collection = db[collection_name]
-
-    # Define the document (entry) to be inserted
-    document = {
-        "name": "John Doe",
-        "age": 30,
-        "city": "Ann Arbor"
+    doc = {
+        "username": username,
+        "html": html,
+        "css": css
     }
-
     # Insert the document into the collection
-    result = collection.insert_one(document)
+    result = collection.insert_one(doc)
 
     # Optional: Print the ID of the newly inserted document
     print("Inserted document with ID:", result.inserted_id)
+    
 def verify_connection(client):
     try:
         print("Attempting to ping...")
