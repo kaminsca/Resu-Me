@@ -1,14 +1,15 @@
 import './App.css';
 import Test from './components/Test'
+import NewUserForm from './components/NewUserForm'
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        test header
+        < NewUserForm />
       </header>
       <body>
-       < Test />
+
       </body>
     </div>
   );
