@@ -41,7 +41,8 @@ def read_entry(client, username):
     collection_name = 'user_websites'
     collection = db[collection_name]
 
-    result = collection.find_one({"username": username})
+    result = collection.find_one({'username': 'therkels'})
+    print(result)
     return result
 
 def verify_connection(client):
