@@ -29,6 +29,9 @@ function NewUserForm(props) {
         formData.append('username', url);
         formData.append('resume', file);
         formData.append('theme', selectOption);
+        console.log('heheh');
+        console.log(selectOption);
+        console.log(url);
 
         try {
             const response = await fetch(`${LOCAL_URL}/gemini`, {
