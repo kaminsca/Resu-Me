@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, render_template_string
 from flask_cors import CORS, cross_origin
 import google.generativeai as genai
 from dotenv import load_dotenv
@@ -59,7 +59,7 @@ def gemini_query(theme=None, resume=None, username=None):
     client = get_mongo_client()
     write_entry(
         client,
-        "therkels",
+        username,
         html,
         css
         )
@@ -72,8 +72,8 @@ def get_user():
         username = "therkels"
     client = get_mongo_client()
     res = read_entry(client, username)
-    print(res)
-    return render_template('index.html')
+    html = '```' + res['html'] + '```'
+    return render_template_string(html)
 
 if __name__ == '__main__':
     load_dotenv()
