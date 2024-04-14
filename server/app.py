@@ -97,8 +97,8 @@ def get_user(username):
     # Check if 'read_entry' returned a dictionary and that 'html' key exists
     if res:
         if 'html' and 'css' in res:
-            html = '```' + res['html'] + '```'
-            css = '```' + res['css'] + '```'
+            html = res['html']
+            css = res['css']
             ret_json = {
                 "data": {
                     "html": html,
