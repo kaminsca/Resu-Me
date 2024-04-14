@@ -62,10 +62,10 @@ function NewUserForm(props) {
     <div className="inner-container">
         <div className="container">
             <Form onSubmit={handleSubmit}>
-                <Form.Label htmlFor="basic-url" className="sep">Your vanity URL</Form.Label>
+                <Form.Label htmlFor="basic-url" className="sep">Your Personal Website URL</Form.Label>
                 <InputGroup className="mb-3 sep">
                     <InputGroup.Text id="basic-addon3">
-                    https://resu-me.com/
+                    https://resu-me.com/&nbsp;
                     </InputGroup.Text>
                     <Form.Control 
                         id="basic-url" 
