@@ -30,11 +30,11 @@ function UserPage() {
           setData(result);
           var html_cleaned = result.data.html.replaceAll("```","")
 
-          console.log(html_cleaned);
           setData({
                 "html":html_cleaned,
                 "css": result.data.css,
           })
+          console.log(data.css)
           setLoading(false);
         } catch (error) {
           // In case of an error, save the error to state and indicate that you're no longer loading.
@@ -61,7 +61,7 @@ function UserPage() {
     }
     return (
         <div>
-            <style dangerouslySetInnerHTML={{ __html: data.css }} />
+            {data.css === null?  <style dangerouslySetInnerHTML={{ __html: data.css }} />: <></>}x
             <div dangerouslySetInnerHTML={{ __html: data.html }} />
         </div>
     );
