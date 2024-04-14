@@ -39,8 +39,8 @@ function NewUserForm(props) {
                 body: formData,
                 mode: 'no-cors'
             });
-
-            if (!response.ok) {
+            console.log(response)
+            if (!response.success) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
 
@@ -83,9 +83,11 @@ function NewUserForm(props) {
             onChange={handleSelectChange}
             >
             <option>Open this select menu</option>
-            <option value="theme1">One</option>
-            <option value="theme1">Two</option>
-            <option value="theme1">Three</option>
+            <option value="Apple">Apple</option>
+            <option value="Minimalistic">Minimalistic</option>
+            <option value="Newspaper">Newspaper</option>
+            <option value="Tumblr">Tumblr</option>
+            <option value="WindowsXP">WindowsXP</option>
         </Form.Select>
         <Button variant="primary" type="submit">
             Submit

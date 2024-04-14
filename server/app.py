@@ -87,18 +87,37 @@ def gemini_query():
         css
         )
     print(html)
-    return json.dumps({'success':True}), 200
+    return json.dumps({'success':True, 'status': 200})
 
 @app.route("/user/<username>", methods = ['GET'])
 def get_user(username):
     client = get_mongo_client()
     res = read_entry(client, username)
+    ret_json = {}
     # Check if 'read_entry' returned a dictionary and that 'html' key exists
-    if res and 'html' in res:
-        html = '```' + res['html'] + '```'
+    if res:
+        if 'html' and 'css' in res:
+            html = '```' + res['html'] + '```'
+            css = '```' + res['css'] + '```'
+            ret_json = {
+                "data": {
+                    "html": html,
+                    "css": css,
+                    "user": username
+                }
+            }
     else:
         html = 'No HTML content found.'
-    return render_template_string(html)
+        css = 'No CSS content found'
+        ret_json = {
+                "data": {
+                    "html": html,
+                    "css": css,
+                    "user": username
+                }
+            }
+    
+    return(jsonify(ret_json))
 
 if __name__ == '__main__':
     load_dotenv()
