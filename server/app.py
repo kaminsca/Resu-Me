@@ -8,6 +8,7 @@ import os
 import io
 import fitz
 import io
+import json
 
 
 app = Flask(__name__)
@@ -30,8 +31,8 @@ def gemini_query():
     genai.configure(api_key=os.environ.get("GOOGLE_API_KEY"))
     # Get the uploaded PDF file
     resume_file = request.files.get('resume', None)
-    theme = request.args.get('theme')
-    username = request.args.get('username')
+    username = request.form['username']
+    theme = request.form['theme']
     print('theme: ', theme)
     print('username: ', username)
     model = genai.GenerativeModel(model_name='models/gemini-1.5-pro-latest')
@@ -73,7 +74,7 @@ def gemini_query():
     html = parts[1].removeprefix('html\n')
     css = None
     # print('HTML -----------------------------------\n', html)
-    if len(parts) > 2:
+    if len(parts) > 3:
         css = parts[3].removeprefix('css\n')
         # print('CSS -----------------------------------\n', css)
     
@@ -86,15 +87,17 @@ def gemini_query():
         css
         )
     print(html)
-    return 200
+    return json.dumps({'success':True}), 200
 
 @app.route("/user/<username>", methods = ['GET'])
 def get_user(username):
-    if username == None:
-        username = "therkels"
     client = get_mongo_client()
     res = read_entry(client, username)
-    html = '```' + res['html'] + '```'
+    # Check if 'read_entry' returned a dictionary and that 'html' key exists
+    if res and 'html' in res:
+        html = '```' + res['html'] + '```'
+    else:
+        html = 'No HTML content found.'
     return render_template_string(html)
 
 if __name__ == '__main__':
