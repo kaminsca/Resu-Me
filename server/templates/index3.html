@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Josh Roy | Portfolio</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/style3.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Josh Roy</h1>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Building Innovative Software Solutions</h2>
+                <p>Full-Stack Developer | Machine Learning Enthusiast | Problem Solver</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <p>I am a highly motivated and results-oriented Computer Science graduate from UC Berkeley, currently pursuing a Master's degree at the University of Michigan. With a strong passion for building impactful software solutions, I have experience in full-stack development, machine learning, and cloud computing. My background includes working on diverse projects, from developing customer-facing applications to conducting research in cutting-edge AI technologies.</p>
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="container">
+            <h2>Experience</h2>
+
+            <div class="experience-item">
+                <h3>Full-Stack Software Developer</h3>
+                <h4>Anoki Inc. (Startup) | Jun 2023 - Feb 2024</h4>
+                <ul>
+                    <li>Designed and built a content scheduling endpoint for a Content Management System using GoLang and Svelte.</li>
+                    <li>Implemented a full-stack feedback feature for a machine learning powered clip search component.</li>
+                    <li>Managed and deployed containerized elements of a content streaming system using Docker.</li>
+                    <li>Monitored and debugged system networking components running on HAProxy.</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <h3>Undergraduate Research Assistant</h3>
+                <h4>BAIR Labs | Aug 2022 - May 2023</h4>
+                <ul>
+                    <li>Contributed to research on visual prompting with image inpainting and generative adversarial models.</li>
+                    <li>Developed a data pipeline to augment a figure database for training machine learning models.</li>
+                    <li>Achieved 98% accuracy in capturing relevant captions and added support for new figure types.</li>
+                    <li>Delivered a dataloader with over 87,000 augmented samples, exceeding the original dataset size.</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <h3>Software Development Engineer</h3>
+                <h4>Amazon Inc. | May 2022 - Aug 2022</h4>
+                <ul>
+                    <li>Designed and built a distributed food ordering system integrated with DoorDash using AWS services.</li>
+                    <li>Implemented user authentication and account identification features using AWS Cognito, Secrets Manager, S3, and SES.</li>
+                    <li>Developed the business and transaction system using AWS Lambda, SQS, API Gateway, Puppeteer, and Docker.</li>
+                    <li>Enabled multi-user communication capabilities with AWS SNS and hosted the service on AWS Amplify.</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <h3>Undergraduate Research Assistant</h3>
+                <h4>RISELab | Jan 2022 - Jun 2022</h4>
+                <ul>
+                    <li>Researched and developed a model to predict accurate bird's-eye view of lanes for autonomous vehicles.</li>
+                    <li>Built data pipelines to process dashcam footage and segment lanes using semantic segmentation techniques.</li>
+                    <li>Utilized point cloud data to transform viewing angles and train the lane prediction model effectively.</li>
+                    <li>Analyzed academic papers to identify optimal methods for building accurate lane prediction models.</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <h3>Workload Engineer</h3>
+                <h4>NetApp | May 2021 - Aug 2021</h4>
+                <ul>
+                    <li>Developed a Kubernetes cluster to deploy tools for efficient data storage, analysis, and visualization.</li>
+                    <li>Deployed and tested applications like Grafana, InfluxDB, and Telegraf for robust performance monitoring.</li>
+                    <li>Configured and connected TCP endpoints of deployed services using JSON manifests and configuration files.</li>
+                    <li>Enabled the team to analyze and present NetApp's ONTAP performance metrics to stakeholders effectively.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2>Projects</h2>
+
+            <div class="project-item">
+                <h3>Distance Lengthening Algorithm (Python)</h3>
+                <p>Developed an algorithm to maximize the shortest distance between two nodes in a graph, efficiently determining which nodes and edges to remove under given constraints. Built a graph generator for testing the algorithm with randomized graphs of varying sizes.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2>Skills</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Languages</h3>
+                    <ul>
+                        <li>Python</li>
+                        <li>Java</li>
+                        <li>JavaScript</li>
+                        <li>TypeScript</li>
+                        <li>GoLang</li>
+                        <li>HTML</li>
+                        <li>SQL</li>
+                        <li>Bash</li>
+                        <li>CSS</li>
+                        <li>C</li>
+                        <li>RISC-V</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Platforms/Frameworks/APIs</h3>
+                    <ul>
+                        <li>PyTorch</li>
+                        <li>Docker</li>
+                        <li>Kubernetes</li>
+                        <li>AWS</li>
+                        <li>Svelte</li>
+                        <li>React</li>
+                        <li>Selenium</li>
+                        <li>Puppeteer</li>
+                        <li>TensorFlow</li>
+                        <li>Jupyter</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>Contact</h2>
+            <ul>
+                <li><strong>Email:</strong> joshroy.01@gmail.com</li>
+                <li><strong>Phone:</strong> +1 (936) 615-2164</li>
+                <li><a href="https://www.linkedin.com/in/joshroy01">LinkedIn</a></li>
+                <li><a href="https://github.com/joshroy01">GitHub</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2024 Josh Roy</p>
+    </footer>
+</body>
+</html>
