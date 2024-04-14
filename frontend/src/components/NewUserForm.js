@@ -29,7 +29,6 @@ function NewUserForm(props) {
         formData.append('username', url);
         formData.append('resume', file);
         formData.append('theme', selectOption);
-        console.log('heheh');
         console.log(selectOption);
         console.log(url);
 
@@ -37,10 +36,9 @@ function NewUserForm(props) {
             const response = await fetch(`${LOCAL_URL}/gemini`, {
                 method: 'POST',
                 body: formData,
-                mode: 'no-cors'
+                // mode: 'no-cors'
             });
-            console.log(response)
-            if (!response.success) {
+            if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
 
