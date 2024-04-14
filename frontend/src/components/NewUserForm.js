@@ -86,6 +86,7 @@ function NewUserForm(props) {
             <option value="Newspaper">Newspaper</option>
             <option value="Tumblr">Tumblr</option>
             <option value="WindowsXP">WindowsXP</option>
+            <option value="Vaporwave">Vaporwave</option>
         </Form.Select>
         <Button variant="primary" type="submit">
             Submit

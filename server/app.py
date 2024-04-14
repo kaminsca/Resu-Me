@@ -65,6 +65,13 @@ def gemini_query():
             prompt_list.append(img)
 
     txt = 'Please build the HTML code, including the css styling in the header, for a beautiful personal website using all the information on my resume in the style of these photos. Do not use default fonts. Make the page aesthetically pleasing in terms of color and layout. Connect any buttons to the correct section of the webpage. Do not explain the results.'
+    txt = '''Please build the HTML code, including the css styling, for a beautiful personal website that meets the following requirements: - Use all of the information from the following resume file as content for the website. Do not omit, reword, or summarize any of the information. Do not leave any sections for me to implement later. I want all of the information to be in the html code without me having to make any additions or edits later. THIS IS THE MOST IMPORTANT REQUIREMENT, DO NOT LEAVE ANY SECTIONS OR WORDS TO IMPLEMENT LATER. 
+- Base the color and aesthetic details off the following images: 
+- Base the page layout off the following images: 
+- Do not use default fonts and do not use overly cursive or unprofessional fonts.
+- Make the page aesthetically pleasing in terms of color and layout.
+- Connect any buttons to the correct section of the webpage or external links.
+Make sure you output both the html code and css code. Do not explain the results.'''
     prompt_list.append(txt)
 
     response = model.generate_content(prompt_list)
@@ -73,10 +80,8 @@ def gemini_query():
 
     html = parts[1].removeprefix('html\n')
     css = None
-    # print('HTML -----------------------------------\n', html)
     if len(parts) > 3:
         css = parts[3].removeprefix('css\n')
-        # print('CSS -----------------------------------\n', css)
     
 
     client = get_mongo_client()
