@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import Uploader from "./Uploader";
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
 
 import {LOCAL_URL} from '../constants';
+import '../styles/styles.css';
 
 function NewUserForm(props) {
     const [file, setFile] = useState(null);
@@ -53,7 +53,7 @@ function NewUserForm(props) {
 
     return (
     <>
-    <Form onSubmit={handleSubmit}>
+    {/* <Form onSubmit={handleSubmit}>
         <Form.Label htmlFor="basic-url">Your vanity URL</Form.Label>
         <InputGroup className="mb-3">
             <InputGroup.Text id="basic-addon3">
@@ -91,7 +91,47 @@ function NewUserForm(props) {
         <Button variant="primary" type="submit">
             Submit
       </Button>
-    </Form>
+    </Form> */}
+    <div className="inner-container">
+        <div className="container">
+            <Form onSubmit={handleSubmit}>
+                <Form.Label htmlFor="basic-url">Your vanity URL</Form.Label>
+                <InputGroup className="mb-3">
+                    <InputGroup.Text id="basic-addon3">
+                    https://resu-me.com/
+                    </InputGroup.Text>
+                    <Form.Control 
+                        id="basic-url" 
+                        aria-describedby="basic-addon3" 
+                        onChange={handleUrlChange}
+                        />
+                </InputGroup>
+
+                
+                <Form.Group controlId="formFileSm" className="mb-3">
+                    <Form.Label>Upload your resume below:</Form.Label>
+                    <Form.Control 
+                        type="file" 
+                        size="sm"
+                        onChange={handleFileChange} 
+                        />
+                </Form.Group>
+
+                <Form.Select 
+                    aria-label="Default select example"
+                    onChange={handleSelectChange}
+                    >
+                    <option>Open this select menu</option>
+                    <option value="theme1">One</option>
+                    <option value="theme1">Two</option>
+                    <option value="theme1">Three</option>
+                </Form.Select>
+                <Button variant="primary" type="submit">
+                    Submit
+                </Button>
+            </Form>
+        </div>
+    </div>
     </>
     )
 }
