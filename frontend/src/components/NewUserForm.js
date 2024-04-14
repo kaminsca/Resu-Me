@@ -59,50 +59,11 @@ function NewUserForm(props) {
 
     return (
     <>
-    {/* <Form onSubmit={handleSubmit}>
-        <Form.Label htmlFor="basic-url">Your vanity URL</Form.Label>
-        <InputGroup className="mb-3">
-            <InputGroup.Text id="basic-addon3">
-            https://resu-me.com/
-            </InputGroup.Text>
-            <Form.Control 
-                id="basic-url" 
-                aria-describedby="basic-addon3" 
-                onChange={handleUrlChange}
-                />
-        </InputGroup>
-
-      
-        <Form.Group controlId="formFileSm" className="mb-3">
-            <Form.Label>Small file input example</Form.Label>
-            <Form.Control 
-                type="file" 
-                size="sm"
-                onChange={handleFileChange} 
-                />
-        </Form.Group>
-
-        <Form.Select 
-            aria-label="Default select example"
-            onChange={handleSelectChange}
-            >
-            <option>Open this select menu</option>
-            <option value="Apple">Apple</option>
-            <option value="Minimalistic">Minimalistic</option>
-            <option value="Newspaper">Newspaper</option>
-            <option value="Tumblr">Tumblr</option>
-            <option value="WindowsXP">WindowsXP</option>
-            <option value="Vaporwave">Vaporwave</option>
-        </Form.Select>
-        <Button variant="primary" type="submit">
-            Submit
-      </Button>
-    </Form> */}
     <div className="inner-container">
         <div className="container">
             <Form onSubmit={handleSubmit}>
-                <Form.Label htmlFor="basic-url">Your vanity URL</Form.Label>
-                <InputGroup className="mb-3">
+                <Form.Label htmlFor="basic-url" className="sep">Your vanity URL</Form.Label>
+                <InputGroup className="mb-3 sep">
                     <InputGroup.Text id="basic-addon3">
                     https://resu-me.com/
                     </InputGroup.Text>
@@ -114,7 +75,7 @@ function NewUserForm(props) {
                 </InputGroup>
 
                 
-                <Form.Group controlId="formFileSm" className="mb-3">
+                <Form.Group controlId="formFileSm" className="mb-3 sep">
                     <Form.Label>Upload your resume below:</Form.Label>
                     <Form.Control 
                         type="file" 

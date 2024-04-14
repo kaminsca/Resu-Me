@@ -1,7 +1,7 @@
 
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #f8f8f8;
+    background-color: #add8e6;
     color: #333;
 }
 
@@ -24,8 +24,12 @@ body {
 
 .inner-container {
     display: grid;
-    place-content: center;  /* Center content both horizontally and vertically */
-    height: 100vh;         /* Make container full viewport height (adjust as needed) */
+    place-content: center;
+    height: 100vh;
+}
+
+.sep {
+    margin-bottom: 10px;
 }
 
 label {
