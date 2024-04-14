@@ -61,7 +61,7 @@ function UserPage() {
     }
     return (
         <div>
-            {data.data.css === null? <></> : <style dangerouslySetInnerHTML={{ __html: data.data.css }} />}x
+            {data.data.css === null? <></> : <style dangerouslySetInnerHTML={{ __html: data.data.css }} />}
             <div dangerouslySetInnerHTML={{ __html: data.data.html }} />
         </div>
     );
