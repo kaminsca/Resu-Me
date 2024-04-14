@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
+import Spinner from 'react-bootstrap/Spinner';
 
 import {LOCAL_URL} from '../constants';
 import '../styles/styles.css';
@@ -10,6 +11,7 @@ function NewUserForm(props) {
     const [file, setFile] = useState(null);
     const [url, setUrl] = useState('');
     const [selectOption, setSelectOption] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleUrlChange = (e) => {
         setUrl(e.target.value);
@@ -31,6 +33,7 @@ function NewUserForm(props) {
         formData.append('theme', selectOption);
         console.log(selectOption);
         console.log(url);
+        setIsLoading(true);
 
         try {
             const response = await fetch(`${LOCAL_URL}/gemini`, {
@@ -46,6 +49,9 @@ function NewUserForm(props) {
             console.log('Form submission successful', result);
         } catch (error) {
             console.error('Form submission error:', error);
+        }
+        finally {
+            setIsLoading(false);
         }
     };
     
@@ -121,14 +127,20 @@ function NewUserForm(props) {
                     aria-label="Default select example"
                     onChange={handleSelectChange}
                     >
-                    <option>Open this select menu</option>
-                    <option value="theme1">One</option>
-                    <option value="theme1">Two</option>
-                    <option value="theme1">Three</option>
+                    <option>Select your theme</option>
+                    <option value="Apple">Apple</option>
+                    <option value="Minimalistic">Minimalistic</option>
+                    <option value="Newspaper">Newspaper</option>
+                    <option value="Tumblr">Tumblr</option>
+                    <option value="WindowsXP">WindowsXP</option>
+                    <option value="Vaporwave">Vaporwave</option>
                 </Form.Select>
                 <Button variant="primary" type="submit">
-                    Submit
-                </Button>
+                    {isLoading ? (<Spinner animation="border" role="status" size="sm" />) : 
+            (
+                'Submit'
+            )}
+                  </Button>
             </Form>
         </div>
     </div>

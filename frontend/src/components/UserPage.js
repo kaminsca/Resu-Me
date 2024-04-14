@@ -28,13 +28,13 @@ function UserPage() {
   
           // Save the result and indicate that you're no longer loading.
           setData(result);
-          var html_cleaned = result.data.html.replaceAll("```","")
+          // var html_cleaned = result.data.html.replaceAll("```","")
 
-          setData({
-                "html":html_cleaned,
-                "css": result.data.css,
-          })
-          console.log(data.css)
+          // setData({
+          //       "html":html_cleaned,
+          //       "css": result.data.css,
+          // })
+          // console.log(data.css)
           setLoading(false);
         } catch (error) {
           // In case of an error, save the error to state and indicate that you're no longer loading.
@@ -61,8 +61,8 @@ function UserPage() {
     }
     return (
         <div>
-            {data.css === null?  <style dangerouslySetInnerHTML={{ __html: data.css }} />: <></>}x
-            <div dangerouslySetInnerHTML={{ __html: data.html }} />
+            {data.data.css === null? <></> : <style dangerouslySetInnerHTML={{ __html: data.data.css }} />}x
+            <div dangerouslySetInnerHTML={{ __html: data.data.html }} />
         </div>
     );
   }
